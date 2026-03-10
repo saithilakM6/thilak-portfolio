@@ -16,9 +16,9 @@ const Certifications = () => {
     { title: "Full Stack Java", issuer: "SkillDzire", date: "Mar 2025", link: "https://drive.google.com/file/d/1_WbVYR1RgIqRNE9fJ5gkdHSOnUGvItTF/preview" },
     { title: "24hr Hackathon", issuer: "Miracle Software Systems", date: "Dec 2024", link: "https://drive.google.com/file/d/1vIbRbdBN6MupebDT7jCyzsWAxUJRZ9fB/preview" },
     { title: "Cybersecurity Analyst", issuer: "Tata / Forage", date: "Oct 2024", link: "https://drive.google.com/file/d/18UPboikrSmaIrH8YFbGKZIO9WVfCr8mM/preview" },
-    { title: "Cybersecurity Analyst", issuer: "Jp Morgan Chase", date: "Sep 2024", link: "https://drive.google.com/file/d/1WAHHcnKy9Um1gHbXME5XbViePHCmCM4Q/preview" },
     { title: "GenAI Job Simulation", issuer: "BCG / Forage", date: "Sep 2024", link: "https://drive.google.com/file/d/1eh6i6AjWcODzeQ_6LKh8oauDovQ9RxGs/preview" },
     { title: "Android Bug Bounty Hunting", issuer: "EC Council", date: "Jun 2024", link: "https://drive.google.com/file/d/1H3Jw_LLF2PGge1dH1IGlXfDtfngX8rUU/preview" },
+    { title: "Cybersecurity Analyst", issuer: "Jp Morgan Chase", date: "Sep 2024", link: "https://drive.google.com/file/d/1WAHHcnKy9Um1gHbXME5XbViePHCmCM4Q/preview" },
     { title: "Ethical Hacking", issuer: "tutedude.com", date: "Aug 2023", link: "https://drive.google.com/file/d/1xnvcO_AP3XDDeh_kuPHocBOLvkpFBF68/preview" },
     { title: "Cyber Hygiene Practices", issuer: "ISEA MeitY by C-DAC", date: "Dec 2022", link: "https://drive.google.com/file/d/1qqTHDupJ6rAYLsX6v1xFgAVDPGel94O4/preview" }
   ];
@@ -97,8 +97,8 @@ const Certifications = () => {
           paddingBottom: '2rem', 
           paddingTop: '1rem',
           WebkitOverflowScrolling: 'touch',
-          paddingLeft: 'max(1.5rem, calc((100% - 1100px) / 2))',
-          paddingRight: 'max(1.5rem, calc((100% - 1100px) / 2))',
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
         }}
       >
         {infiniteCerts.map((cert, idx) => (
