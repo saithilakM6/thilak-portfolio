@@ -1,4 +1,5 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
+import profileImg from '../../assets/profile.jpg';
 import SketchyBox from '../SketchyBox';
 import SketchyButton from '../SketchyButton';
 import Modal from '../Modal';
@@ -105,7 +106,7 @@ const Hero = () => {
         <div className="hero-image">
           <SketchyBox noHover style={{ padding: '0.5rem', display: 'inline-block' }}>
             <img 
-              src="/src/assets/20260222_180039.jpg" 
+              src={profileImg} 
               alt="Sai Thilak Maroju" 
               style={{ width: '280px', height: '280px', objectFit: 'cover', objectPosition: 'center 15%', borderRadius: 'var(--sketch-br-3)', border: 'var(--sketch-border-sm)' }} 
               onError={(e) => { e.target.src = 'https://fakeimg.pl/280x280/FDFCF0/2A2A2A?text=Photo' }}
