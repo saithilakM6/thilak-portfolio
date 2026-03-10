@@ -1,0 +1,126 @@
+﻿:root {
+  /* Colors */
+  --bg-color: #FDFCF0;
+  --box-bg: #FFFFFF;
+  --text-color: #2A2A2A;
+  --accent-color: #E55934;
+  --secondary-accent: #4A90E2;
+  --shadow-color: #2A2A2A;
+  
+  /* Fonts */
+  --font-body: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --font-heading: 'Comic Sans MS', 'Chalkboard SE', cursive;
+
+  /* Sketchy borders */
+  --sketch-border-sm: 2px solid var(--text-color);
+  --sketch-border-md: 3px solid var(--text-color);
+  --sketch-border-lg: 4px solid var(--text-color);
+  
+  /* Border radius */
+  --sketch-br-1: 255px 15px 225px 15px/15px 225px 15px 255px;
+  --sketch-br-2: 15px 225px 15px 255px/225px 15px 255px 15px;
+  --sketch-br-3: 255px 5px 225px 5px/5px 225px 5px 255px;
+  
+  /* Hard pencil shadows */
+  --sketch-shadow: 4px 4px 0px var(--shadow-color);
+  --sketch-shadow-hover: 6px 6px 0px var(--accent-color);
+  --sketch-shadow-active: 2px 2px 0px var(--accent-color);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: radial-gradient(var(--text-color) 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+  margin-bottom: 0.5em;
+  transition: color 0.3s;
+}
+
+a { color: var(--text-color); text-decoration: none; transition: all 0.2s ease; }
+a:hover { color: var(--accent-color); }
+ul { list-style: none; }
+
+.sketchy-box {
+  background: var(--box-bg);
+  border: var(--sketch-border-md);
+  border-radius: var(--sketch-br-1);
+  padding: 1.5rem;
+  box-shadow: var(--sketch-shadow);
+  transition: all 0.3s ease;
+}
+
+.sketchy-box:hover {
+  border-radius: var(--sketch-br-2);
+  transform: translateY(-2px) rotate(1deg);
+  box-shadow: var(--sketch-shadow-hover);
+}
+
+.sketchy-btn {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: var(--box-bg);
+  color: var(--text-color);
+  border: var(--sketch-border-md);
+  border-radius: var(--sketch-br-3);
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--sketch-shadow);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.sketchy-btn:hover {
+  background: var(--text-color);
+  color: var(--box-bg);
+  box-shadow: var(--sketch-shadow-hover);
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+.sketchy-btn:active {
+  transform: translateY(2px) rotate(1deg);
+  box-shadow: var(--sketch-shadow-active);
+}
+
+.sketchy-btn-accent {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--text-color);
+}
+
+.sketchy-btn-accent:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+  box-shadow: var(--sketch-shadow);
+}
+
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+body.dark-mode {
+  --bg-color: #1A1A1A;
+  --box-bg: #282828;
+  --text-color: #E0E0E0;
+  --accent-color: #4A90E2; 
+  --secondary-accent: #E55934;
+  --shadow-color: #000000;
+  
+  --sketch-border-sm: 2px solid var(--text-color);
+  --sketch-border-md: 3px solid var(--text-color);
+  --sketch-border-lg: 4px solid var(--text-color);
+}
