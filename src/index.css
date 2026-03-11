@@ -8,8 +8,8 @@
   --shadow-color: #2A2A2A;
   
   /* Fonts */
-  --font-body: 'Comic Sans MS', 'Chalkboard SE', cursive;
-  --font-heading: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --font-body: 'Comic Neue', cursive;
+  --font-heading: 'Comic Neue', cursive;
 
   /* Sketchy borders */
   --sketch-border-sm: 2px solid var(--text-color);

@@ -9,7 +9,9 @@ const Certifications = () => {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeftPos, setScrollLeftPos] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(1); // 1 for RTL, -1 for LTR
   const isHovered = useRef(false);
+  const lastX = useRef(0);
 
   const certs = [
     { title: "Professional Data Engineer", issuer: "Google", date: "Aug 2025", link: "https://drive.google.com/file/d/1g6pMULjqZD1fEP5G3RMpR2sct5nVCyi1/preview" },
@@ -30,39 +32,76 @@ const Certifications = () => {
     const scroller = scrollRef.current;
     let animationId;
     const play = () => {
-      // We check if it has more than 9 children to avoid index out of bounds
       if (scroller && !isDown && !isHovered.current && scroller.children.length > certs.length) {
-        scroller.scrollLeft += 1;
+        scroller.scrollLeft += scrollDirection;
         
-        // Exact pixel width of one full set
         const shiftAmount = scroller.children[certs.length].offsetLeft - scroller.children[0].offsetLeft;
         
         if (scroller.scrollLeft >= shiftAmount) {
           scroller.scrollLeft -= shiftAmount;
+        } else if (scroller.scrollLeft <= 0) {
+          scroller.scrollLeft += shiftAmount;
         }
       }
       animationId = requestAnimationFrame(play);
     };
     animationId = requestAnimationFrame(play);
     return () => cancelAnimationFrame(animationId);
-  }, [isDown, certs.length]);
+  }, [isDown, certs.length, scrollDirection]);
 
   const handleMouseDown = (e) => {
     setIsDown(true);
     setStartX(e.pageX - scrollRef.current.offsetLeft);
     setScrollLeftPos(scrollRef.current.scrollLeft);
+    lastX.current = e.pageX;
   };
+
+  const handleTouchStart = (e) => {
+    isHovered.current = true;
+    setIsDown(true);
+    const touch = e.touches[0];
+    setStartX(touch.pageX - scrollRef.current.offsetLeft);
+    setScrollLeftPos(scrollRef.current.scrollLeft);
+    lastX.current = touch.pageX;
+  };
+
   const handleMouseLeave = () => {
     setIsDown(false);
     isHovered.current = false;
   };
+
   const handleMouseUp = () => setIsDown(false);
+
   const handleMouseMove = (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 1.5;
     scrollRef.current.scrollLeft = scrollLeftPos - walk;
+
+    // Track direction
+    if (e.pageX > lastX.current) {
+      setScrollDirection(-1); // LTR
+    } else if (e.pageX < lastX.current) {
+      setScrollDirection(1); // RTL
+    }
+    lastX.current = e.pageX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDown) return;
+    const touch = e.touches[0];
+    const x = touch.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeftPos - walk;
+
+    // Track direction
+    if (touch.pageX > lastX.current) {
+      setScrollDirection(-1); // LTR
+    } else if (touch.pageX < lastX.current) {
+      setScrollDirection(1); // RTL
+    }
+    lastX.current = touch.pageX;
   };
 
   return (
@@ -88,8 +127,9 @@ const Certifications = () => {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => { isHovered.current = true; }}
-        onTouchStart={() => { isHovered.current = true; setIsDown(true); }}
+        onTouchStart={handleTouchStart}
         onTouchEnd={() => { isHovered.current = false; setIsDown(false); }}
+        onTouchMove={handleTouchMove}
         style={{ 
           display: 'flex', 
           overflowX: 'auto', 
